@@ -1,0 +1,31 @@
+bool isIdentical(Node* r1, Node* r2){
+
+//base cases
+
+if(r1==NULL && r2==NULL){
+   return true;
+   }
+   
+   if(r1=!NULL && r2==NULL){
+   return false;
+   }
+   
+   if(r1==NULL && r2!=NULL){
+   return false;
+   }
+   
+   //when r1 and r2 are non null
+   
+   bool left= isIdentical(root->left);
+   bool right= isIdentical(root->right);
+   
+   bool value= root->left == root->right;
+   
+   if(left && right && value){
+   return true;
+   }
+   
+   else{
+   return false;
+   }
+}
