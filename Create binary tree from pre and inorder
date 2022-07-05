@@ -43,7 +43,7 @@ for(int i=0; i<n; i++){
 nodeToIndex[in[i]]=i;
    }
  }
- Node* solve(int in[], int pre[], int &index, int inorderStart, int inorderEnd, nodeToIndex){
+ Node* solve(int in[], int pre[], int &index, int inorderStart, int inorderEnd,n, nodeToIndex){
  //base case
   if(index>=n || inorderStart > inorderEnd){
   return NULL;
@@ -55,8 +55,8 @@ nodeToIndex[in[i]]=i;
     
     //recursive calls
     
-    root->left= solve(in, pre, index, inorderStart, position-1, nodeToIndex);
-    root->right= solve(in, pre, index, position+1, inorderEnd, nodeToIndex);
+    root->left= solve(in, pre, index, inorderStart, position-1,n, nodeToIndex);
+    root->right= solve(in, pre, index, position+1, inorderEnd,n, nodeToIndex);
     return root;
  }
  
@@ -64,7 +64,7 @@ nodeToIndex[in[i]]=i;
  int preOrderIndex=0;
  map<int,int> nodeToIndex;
  createMapping(in, nodeToIndex, n);
- Node* ans= solve(in, pre, preOrderIndex, 0, n-1);
+ Node* ans= solve(in, pre, preOrderIndex, 0, n-1,n, nodeToIndex);
   return ans;
   }
  
