@@ -1,0 +1,31 @@
+  TreeNode* invertTree(TreeNode* root) {
+        if(root==NULL) return root;
+        TreeNode* leftSubTree = invertTree(root->left);
+        TreeNode* rightSubTree = invertTree(root->right);
+        
+        root->left=rightSubTree;
+        root->right=leftSubTree;
+        
+        return root;
+    }
+    
+    
+    or 
+    
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root==NULL)
+            return NULL;
+        
+           TreeNode* temp=NULL;
+            temp=root->left;
+            root->left=root->right;
+            root->right= temp;
+            
+            invertTree(root->left);
+            invertTree(root->right);
+        
+        return root;
+    }
+};
