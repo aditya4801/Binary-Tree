@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        if(root1==NULL && root2==NULL)
+          return NULL;
+          
+          queue<TreeNode*>q;
+          vector<int>ans;
+          
+          while(!q.empty()){
+          int front= q.front();
+          q.pop();
+          
+          if(root1->left && root2->left)
+            q.push(root1->left, root2->left);
+            
+               if(root1->right && root2->right)
+            q.push(root1->right, root2->right);  
+            
+            ans.push_back(q);
+            
+            sort(ans.begin(), ans.end());
+      }
+      return ans;
+   }
+};
