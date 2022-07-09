@@ -1,0 +1,44 @@
+class solution{
+public:
+
+string solve(Node* root){
+ if(root==NULL)
+   return "";
+   
+   string ans="";
+   
+   ans+=to_string(root->data);
+   ans+= solve(root->left);
+   ans+= solve(root->right);
+   
+   return ans;
+ }
+ 
+ int subDup(Node* root){
+ map<string, int >m;
+ queue<Node*>q;
+ 
+ q.push(root);
+ 
+ while(!q.empty()){
+  int front=  q.front();
+  q.pop();
+  
+ string res;
+ 
+ res= solve(front);
+ 
+ if(front->left)
+  q.push(front->left);
+  
+  if(front->right)
+  q.push(front->right;
+  }
+ }
+  for(auto i:m){
+   if(i.second>=2){
+    return 1;
+    }  
+    return 0;
+   }
+}:  
