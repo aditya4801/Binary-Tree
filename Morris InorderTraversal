@@ -3,7 +3,7 @@ Approach:
 We'll take current node=root and a prev 
 
 case 1: if curr->left==NULL then we'll move curr= curr->right;
-case 2: curr->!=NULL then we'll find the right most elem of the left node of curr and connect it with the curr node
+case 2: curr->left!=NULL then we'll find the right most elem of the left node of curr and connect it with the curr node
 then we'll print the value of nodes by moving curr to its right and disconnecting it with curr
 
 vector < int > inorderTraversal(node * root) {
