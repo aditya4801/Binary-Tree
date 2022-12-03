@@ -1,0 +1,26 @@
+class Solution {
+public:
+  bool  isSymmetric(TreeNode* root, TreeNode* subRoot){
+     
+     if(root!=NULL && subRoot==NULL || root==NULL && subRoot!=NULL) return false;
+     if(root==NULL && subRoot==NULL) return true;
+     
+     if(root->val!=subRoot->val) return false;
+     
+     return isSubTree(root->left,subRoot->left) &&  isSubTree(root->right && subRoot->right);
+     
+  }
+  bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        
+        if(root==NULL) return false;  
+        
+        if(root->val== subRoot->val){
+          bool ans= isSubTree(root,subRoot);
+          if(ans) return true;
+        }
+        bool left= isSubtree(root->left,subRoot->left);
+        bool right= isSubtree(root->right, root->right);
+        
+        return left||right;  
+    }
+};
