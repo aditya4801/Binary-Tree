@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+         
+         if(root==NULL)
+           return false;
+           
+           if(isIdentical(root,subRoot)){
+              return true;
+              }
+              
+           return isSubtree(root->left,subRoot->left) || isSubtree(root->right,subRoot->right);
+    }
+    bool isIdentical(root,subRoot){
+         
+         if(root==NULL || subRoot==NULL)
+            return root==NULL && subRoot==NULL;
+            
+         return root->val==subRoot->val && isSubtree(root->left,subRoot->left) && isSubtree(root->right, subRoot->right);
+    }
+};
+
+ if(root==NULL || subRoot==NULL)
