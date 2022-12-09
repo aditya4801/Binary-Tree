@@ -1,0 +1,33 @@
+class solution{
+public:
+
+int res;
+
+ void solve(TreeNode* root, int maxi, int mini){
+  if(!root)
+   return;
+   
+   if(abs(root->val-maxi>res)){
+     res= abs(root->val-maxi);
+   }
+   if(abs(root->val-mini>res)){
+     res=abs(root->val-mini);
+   }
+   if(root->val>maxi)
+     maxi=root->val;
+   if(root->val<mini)
+     mini= root->val;
+     
+     solve(root->left,maxi,mini);
+     solve(root-right,maxi,mini);
+  }
+      int maxAncestorDiff(TreeNode* root) {
+         if(!root)
+          return 0;
+          res=0;
+          
+          solve(root,root->val,root->val);
+          
+          return res;
+      }
+};
