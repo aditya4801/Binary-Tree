@@ -1,36 +1,71 @@
-pair<bool,int>isBalancedFast( Node* node){
+********************************************************Time complexity of O(n2)************************************************************************************
 
-if(root==NULL){
+class Solution {
+public:
+    int height(TreeNode* root) {
+        //base case
+        if(root == NULL)
+            return 0;
+        
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        int ans = 1 + max(leftHeight, rightHeight);
+        return ans;
+    }
+    bool isBalanced(TreeNode* root) {
+        //Base case
+        if(root == NULL)
+            return true;
 
-pair<bool,int>p= make_pair(true,0);
-return p;
-}
+        //1 case
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        int diff = abs(leftHeight - rightHeight);
 
-pair<int,int>left= isBalancedFast(root->left);
-pair<int,int>right= isBalancedFast(root->right);
+        bool ans1 = (diff <= 1);
 
-bool leftAns= left.first;
-bool rightAns= right.first;
+        //Recursion
+        bool leftAns = isBalanced(root->left);
+        bool rightAns = isBalanced(root->right);
 
-bool diff = abs(left.second - right.second) <=1;      //check if left-right <= 1 
+        if(ans1 && leftAns && rightAns)
+            return true;
+        else
+            return false;
+    }
+};
 
-pair<bool,int>ans;
+*****************************************************************************O(n)**************************************************************************************
 
-ans.second= max(left.second, right.second)+1;
+class Solution {
+public:
+    pair<bool,int> check(TreeNode* root){
+        if(root==NULL){
+            pair<bool,int> p= make_pair(true,0);
+            return p;
+        }
+        pair<int,int> left= check(root->left);
+        pair<int,int> right= check(root->right);
+        
+        bool leftAns= left.first;
+        bool rightAns= right.first;
+        
+        bool diff= abs(left.second - right.second) <=1;
+        
+        pair<bool,int>ans;
+       
+        ans.second= max(left.second, right.second) +1;
+        
+        if(leftAns && rightAns && diff){
+            ans.first = true;
+        }
+        else{
+            ans.first= false;
+        }
+        return ans;
+    }
+    bool isBalanced(TreeNode* root) {
+        return check(root).first;
+    }
+};
 
-if(leftAns && rightAns && diff){
-ans.first= true;
-}
-
-else{
-ans.first= false;
-}
-
-return ans;
-
-}
-
-bool isBalanced(Node* root){
-
-return isBalancedFast(root).first;
-}
